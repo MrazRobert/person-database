@@ -10,9 +10,7 @@ const CreatePersonComponent = () => {
     const [emailId, setEmailId] = useState('');
 
     useEffect(() => {
-        if(id === '_add') {
-            return;
-        }else {
+        if(id !== '_add') {
             PersonService.getPersonById(id)
                 .then(response => {
                     let person = response.data;
@@ -25,14 +23,16 @@ const CreatePersonComponent = () => {
 
     const saveOrUpdatePerson = (e) => {
         e.preventDefault();
-        let person = {firstName: firstName, lastName: lastName, emailId: emailId};
-        console.log('person => ' + JSON.stringify(person));
-        if(id === '_add') {
-            PersonService.createPerson(person)
-                .then(response => {history.push('/persons')});
-        }else {
-            PersonService.updatePerson(id, person)
-                .then(response => {history.push('/persons')});
+        if(emailValidation()) {
+            let person = {firstName: firstName, lastName: lastName, emailId: emailId.toLowerCase()};
+            console.log('person => ' + JSON.stringify(person));
+            if(id === '_add') {
+                PersonService.createPerson(person)
+                    .then(response => {history.push('/persons')});
+            }else {
+                PersonService.updatePerson(id, person)
+                    .then(response => {history.push('/persons')});
+            }
         }
     }
 
@@ -46,6 +46,17 @@ const CreatePersonComponent = () => {
 
     const cancel = () => {
         history.push('/persons');
+    }
+
+    const emailValidation = () => {
+        let regex = RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$');
+        if(regex.test(emailId)) {
+            console.log('email ok');
+            return true;
+        }else {
+            console.log('wrong email');
+            return false;
+        }
     }
 
     return (
