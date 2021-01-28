@@ -83,7 +83,7 @@ const CreatePersonComponent = () => {
                                             value={emailId} onChange={(e) => setEmailId(e.target.value)}/>
                                     </div>
                                     <button type="submit" className="btn btn-success" onClick={saveOrUpdatePerson}>Save</button>
-                                    <button className="btn btn-danger" onClick={cancel} style={{marginLeft: "10px"}}>Cancel</button>
+                                    <button type="button" className="btn btn-danger" onClick={cancel} style={{marginLeft: "10px"}}>Cancel</button>
                                 </form>
                             </div>
                         </div>
