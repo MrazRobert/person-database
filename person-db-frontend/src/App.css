@@ -22,3 +22,12 @@
 #root {
   /* background-color: rgb(230, 230, 230); */
 }
+
+.git-icon {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: x-large;
+}
+
+.git-icon:hover {
+  color: rgba(255, 255, 255, 0.7);
+}

@@ -18,6 +18,10 @@ const CreatePersonComponent = () => {
                     setLastName(person.lastName);
                     setEmailId(person.emailId);
                 })
+        }else {
+            setFirstName("");
+            setLastName("");
+            setEmailId("");
         }
     }, [id]);
 
